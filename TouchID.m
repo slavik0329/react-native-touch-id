@@ -9,7 +9,8 @@ RCT_EXPORT_METHOD(isSupported: (RCTResponseSenderBlock)callback)
 {
     LAContext *context = [[LAContext alloc] init];
     NSError *error;
-
+    
+    context.localizedFallbackTitle = @"";
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
         callback(@[[NSNull null], [self getBiometryType:context]]);
         // Device does not support TouchID
